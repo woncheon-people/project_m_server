@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/db_ajoutee?serverTimezone=Asia/Seoul
-    username: # username과 password를 지정해주어야 컴파일 오류가 발생하지 않습니다.
-    password:
+    username: root
+    password: yyb1emdrmq
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -23,6 +23,12 @@ spring:
           type:
             descriptor:
               sql: trace
+
+
+fcm:
+  service-account-file: key/serviceAccount.json
+  topic-name: testMessage
+  project-id: igottago-1c5f5
 
 
 
