@@ -1,11 +1,9 @@
-package ajoutee.domain;
+package ajoutee.demo.domain;
 
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import javax.management.relation.Role;
 
 
 @Entity
@@ -16,24 +14,29 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private String email;
-    private String password;
-    private String provider;
+    private String picture;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
 
     @Builder
-    public Users(Long id, String name, String email, String password, String provider) {
+    public Users(Long id, String name, String email, String picture) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.password = password;
-        this.provider = provider;
+        this.picture = picture;
     }
 
-    public Users update(String name, String provider) {
+    public Users update(String name,String picture) {
         this.name = name;
-        this.provider = provider;
+        this.picture = picture;
+        this.email = email;
+
         return this;
     }
+
+
 }
