@@ -1,29 +1,34 @@
 package ajoutee.demo.controller;
 
-import ajoutee.demo.domain.ApiRequestDomain;
-import ajoutee.demo.domain.ApiResponseDomain;
-import ajoutee.demo.service.api.ApiService;
+import ajoutee.demo.domain.bus_api.dto.BusApiRequestDto;
+import ajoutee.demo.domain.bus_api.dto.BusApiResponseDto;
+import ajoutee.demo.domain.bus_api.vo.ItemList;
+import ajoutee.demo.service.bus_api.BusApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/api")
 public class ApiController {
 
-    private final ApiService apiService;
+    private final BusApiService busApiService;
 
     @Autowired
-    public ApiController(ApiService apiService) {
-        this.apiService = apiService;
+    public ApiController(BusApiService busApiService) {
+        this.busApiService = busApiService;
     }
 
-    @GetMapping("/request")
-    public void requestApi(@RequestBody ApiRequestDomain inputVal) {
-        ApiResponseDomain response = apiService.request(inputVal.getArsId(), inputVal.getBusRouteId());
 
-        // return 방식 미정
+    @GetMapping("/bus-request")
+    @ResponseBody
+    public String requestApi(@RequestParam String arsId, @RequestParam String busRouteId) {
+        ItemList response = busApiService.request(arsId, busRouteId);
+
+        if (response == null)
+            return "조회하신 정류장의 데이터가 Open API 서비스 내에 존재하지 않습니다.";
+
+        String[] s = response.getLastBusTm().split(":");
+        return "입력하신 정류장 \"" + response.getStationNm() + "\"에서의 \"" + response.getBusRouteAbrv()+ "\" 노선의 막차 시간은 \"" + s[0] +"시 " + s[1] + "분\"입니다.";
     }
 }
