@@ -6,7 +6,7 @@ import lombok.Data;
 
 @AllArgsConstructor
 @Data
-public class MessageRequestDTO {
+public class MessageRequestDto {
     private String title;
     private String body;
     private String targetToken;

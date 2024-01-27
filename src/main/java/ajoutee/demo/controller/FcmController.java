@@ -3,7 +3,7 @@ package ajoutee.demo.controller;
 import ajoutee.demo.service.FcmService;
 import ajoutee.demo.service.TokenService;
 import ajoutee.demo.domain.MessageRequest;
-import ajoutee.demo.dto.MessageRequestDTO;
+import ajoutee.demo.dto.MessageRequestDto;
 import com.google.firebase.messaging.FirebaseMessagingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,14 +24,14 @@ public class FcmController {
 
     // fcm를 보낸다 ( topic )
     @PostMapping("/message/fcm/topic")
-    public ResponseEntity sendMessageTopic(@RequestBody MessageRequestDTO requestDTO) throws IOException, FirebaseMessagingException {
+    public ResponseEntity sendMessageTopic(@RequestBody MessageRequestDto requestDTO) throws IOException, FirebaseMessagingException {
         fcmService.sendMessageByTopic(requestDTO.getTitle(), requestDTO.getBody());
         return ResponseEntity.ok().build();
     }
 
     // fcm를 보낸다 ( token )
     @PostMapping("/message/fcm/token")
-    public ResponseEntity<MessageRequestDTO> sendMessageToken(@RequestBody MessageRequestDTO requestDTO) throws IOException, FirebaseMessagingException {
+    public ResponseEntity<MessageRequestDto> sendMessageToken(@RequestBody MessageRequestDto requestDTO) throws IOException, FirebaseMessagingException {
         MessageRequest request = requestDTO.toEntity();
         tokenService.add(request);
         fcmService.sendMessageByToken(requestDTO.getTitle(), requestDTO.getBody(), requestDTO.getTargetToken());
