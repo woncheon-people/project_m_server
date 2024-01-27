@@ -1,4 +1,4 @@
-package ajoutee.demo.config;
+package ajoutee.demo.config.jwt;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;

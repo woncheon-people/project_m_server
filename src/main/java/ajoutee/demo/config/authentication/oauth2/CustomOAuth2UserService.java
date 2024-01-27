@@ -1,4 +1,4 @@
-package ajoutee.demo.config.authentication;
+package ajoutee.demo.config.authentication.oauth2;
 
 
 import ajoutee.demo.domain.Users;
