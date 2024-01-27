@@ -24,8 +24,9 @@ spring:
             descriptor:
               sql: trace
 
+secret-key:
+  bus: "LptPwU%2BeOglSoKJ6cOGTry0zs4NMSpnGFCLKNYusbmV7QbNNrFEfunRev8%2B2%2BGM2CiqNOp24cYhFpNusF1dg8A%3D%3D"
 
-
-
-
-
+logging:
+  level:
+    root : info
