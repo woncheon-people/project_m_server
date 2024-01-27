@@ -1,4 +1,4 @@
-package ajoutee.demo.Service;
+package ajoutee.demo.service;
 
 import ajoutee.demo.domain.MessageRequest;
 import ajoutee.demo.repository.TokenRepository;

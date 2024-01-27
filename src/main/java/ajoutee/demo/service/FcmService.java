@@ -1,5 +1,6 @@
-package ajoutee.demo.Service;
+package ajoutee.demo.service;
 
+import ajoutee.demo.repository.LastTimeRepository;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -9,15 +10,25 @@ import com.google.firebase.messaging.Message;
 import com.google.firebase.messaging.Notification;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class FcmService {
+
+    static int num;
+
+    public String CRON_NUM = convert60(num);
+
+    private final LastTimeRepository lastTimeRepository;
 
     // 비밀키 경로 환경 변수 ( 필수 )
     @Value("${fcm.service-account-file}")
@@ -45,8 +56,28 @@ public class FcmService {
         FirebaseApp.initializeApp(options);
     }
 
+    public int timeSearch(String station) {
+        List<Integer> lastTimes = lastTimeRepository.searchLastTime(station);
+        Integer num = lastTimes.get(0);
+
+        return num; //  2351
+    }
+
+//    @Scheduled(cron = "${CRON_NUM}")
+//    public void pushLastTimeAlarm() throws FirebaseMessagingException{
+//        log.info("막차 시간 알림");
+//        log.info("CRON 넘버 : " + CRON_NUM);
+//        sendMessageByTopic("막차","막차까지 15분남았습니다.");
+//    }
+
+    @Scheduled(cron = "0/30 * * * * *")
+    public void pushLastTimeAlarm() throws FirebaseMessagingException{
+        log.info("막차 시간 알림");
+        sendMessageByTopic("막차","막차까지 15분남았습니다.");
+    }
+
     // 해당 지정된 topic에 fcm를 보내는 메서드
-    public void sendMessageByTopic(String title, String body) throws IOException, FirebaseMessagingException {
+    public void sendMessageByTopic(String title, String body) throws FirebaseMessagingException {
         FirebaseMessaging.getInstance().send(Message.builder()
                 .setNotification(Notification.builder()
                         .setTitle(title)
@@ -66,4 +97,35 @@ public class FcmService {
                 .build());
     }
 
+    public static String convert60(int num){
+
+        int ltEnum2 = 0;
+
+        //23:00 -> 22:85
+
+        ltEnum2 = num-15;
+
+        if(ltEnum2%100 > 60){
+            ltEnum2 = ltEnum2-40;
+        }
+
+        String convert = Integer.toString(ltEnum2);
+        String fT = convert.substring(0,1);
+        String lT = convert.substring(2,3);
+
+
+        String convertTime = "*" + lT + fT + "*" + "*" + "*";
+
+        return convertTime;
+    }
+
+//    @Value("${CRON_NUM}")
+//    public void setCron(String cron){
+//        this.CRON_NUM = cron;
+//    }
+
+
 }
+
+
+

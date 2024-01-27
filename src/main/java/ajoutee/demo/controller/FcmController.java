@@ -1,7 +1,7 @@
 package ajoutee.demo.controller;
 
-import ajoutee.demo.Service.FcmService;
-import ajoutee.demo.Service.TokenService;
+import ajoutee.demo.service.FcmService;
+import ajoutee.demo.service.TokenService;
 import ajoutee.demo.domain.MessageRequest;
 import ajoutee.demo.dto.MessageRequestDTO;
 import com.google.firebase.messaging.FirebaseMessagingException;
