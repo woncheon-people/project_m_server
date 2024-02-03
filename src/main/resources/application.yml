@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/db_ajoutee?serverTimezone=Asia/Seoul
     username: root
-    password: yyb1emdrmq
+    password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -24,14 +24,14 @@ spring:
             descriptor:
               sql: trace
 
+secret-key:
+  bus: "LptPwU%2BeOglSoKJ6cOGTry0zs4NMSpnGFCLKNYusbmV7QbNNrFEfunRev8%2B2%2BGM2CiqNOp24cYhFpNusF1dg8A%3D%3D"
 
 fcm:
   service-account-file: key/serviceAccount.json
   topic-name: testMessage
   project-id: igottago-1c5f5
 
-
-
-
-
-
+logging:
+  level:
+    root: info

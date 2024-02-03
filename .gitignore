@@ -5,6 +5,10 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+spring:
+    profiles:
+        include : oauth
+
 ### STS ###
 .apt_generated
 .classpath
@@ -35,3 +39,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+
+application.yml
+
