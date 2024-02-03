@@ -1,6 +1,6 @@
 package ajoutee.demo.service;
 
-import ajoutee.demo.config.JwtTokenProvider;
+import ajoutee.demo.config.jwt.JwtTokenProvider;
 import ajoutee.demo.config.authentication.dtos.SignupForm;
 import ajoutee.demo.domain.Users;
 import ajoutee.demo.repository.UserRepository;

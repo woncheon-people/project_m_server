@@ -1,4 +1,4 @@
-package ajoutee.demo.config;
+package ajoutee.demo.config.jwt;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

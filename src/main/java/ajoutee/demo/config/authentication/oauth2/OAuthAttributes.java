@@ -1,13 +1,10 @@
-package ajoutee.demo.config.authentication;
+package ajoutee.demo.config.authentication.oauth2;
 
 import ajoutee.demo.domain.Role;
 import ajoutee.demo.domain.Users;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.ToString;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Getter

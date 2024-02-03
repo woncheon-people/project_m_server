@@ -1,5 +1,7 @@
-package ajoutee.demo.config;
+package ajoutee.demo.config.authentication.oauth2;
 
+import ajoutee.demo.config.CookieUtils;
+import ajoutee.demo.config.HttpCookieOAuth2AuthorizationRequestRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
