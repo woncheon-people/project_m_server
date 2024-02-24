@@ -1,4 +1,4 @@
-package kr.ajoutee.igottago.domain;
+package kr.ajoutee.igottago.service;
 
 
 import kr.ajoutee.igottago.dto.BusApiResponseDto;

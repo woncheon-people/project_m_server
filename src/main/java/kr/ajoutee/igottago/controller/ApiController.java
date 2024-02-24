@@ -1,7 +1,7 @@
 package kr.ajoutee.igottago.controller;
 
 import kr.ajoutee.igottago.vo.ItemList;
-import kr.ajoutee.igottago.domain.BusApiService;
+import kr.ajoutee.igottago.service.BusApiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
