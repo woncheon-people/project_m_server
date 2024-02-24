@@ -30,10 +30,14 @@ public class SecurityConfig {
         this.oAuth2AuthenticationSuccessHandler = oAuth2AuthenticationSuccessHandler;
     }
 
+    // Spring Bean이 중복으로 `HttpCookieOAuth2AuthorizationRequestRepository` 의존성 주입을 하고 있음. 임시로 해결
+    // SpringConfig 이 메소드 & OAuth2AuthenticationFailureHandler 생성자 주입
     @Bean
     public HttpCookieOAuth2AuthorizationRequestRepository cookieOAuth2AuthorizationRequestRepository() {
         return new HttpCookieOAuth2AuthorizationRequestRepository();
     }
+
+
 
     @Bean
     public BCryptPasswordEncoder encoder() {
